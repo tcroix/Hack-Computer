@@ -1,0 +1,29 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Mux.hdl
+// Author: Taylor Croix
+// Date: 09/06/2021
+// Section: 505 
+// E-mail: taylorcroix@tamu.edu 
+// Description:The content of this file implements the multiplexor.
+/** 
+ * Multiplexor:
+ * out = a if sel == 0
+ *       b otherwise
+ */
+
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    Not(in=sel, out=Notsel);
+    //First we Not sel
+    //Then we compare b to sel, but a to the notted sel
+    And(a=sel, b=b, out=c);
+    And(a=Notsel, b=a, out=d);
+    //Finally, we or these two outputs, so that if sel = 0 originally, out = a
+    //but if sel = 1 originally, out = b
+    Or(a=c, b=d, out=out);
+}

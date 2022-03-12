@@ -1,0 +1,30 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/And.hdl
+// Author: Taylor Croix
+// Date: 09/06/2021
+// Section: 505 
+// E-mail: taylorcroix@tamu.edu 
+// Description:The content of this file implements the And gate.
+
+
+/**
+ * And gate: 
+ * out = 1 if (a == 1 and b == 1)
+ *       0 otherwise
+ */
+
+CHIP And {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Nor(a=a, b=a, out=na);
+    //This first nor nots the a
+    Nor(a=b, b=b, out=nb);
+    //This second nor nots the b
+    Nor(a=na, b=nb, out=out);
+    //This last nor compare the notted a and b, returning 1 if they were
+    //both originally 1, and 0 otherwise
+}

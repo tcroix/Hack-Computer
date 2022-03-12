@@ -1,0 +1,25 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Or.hdl
+// Author: Taylor Croix
+// Date: 09/06/2021
+// Section: 505 
+// E-mail: taylorcroix@tamu.edu 
+// Description:The content of this file implements the Or gate.
+ /**
+ * Or gate:
+ * out = 1 if (a == 1 or b == 1)
+ *       0 otherwise
+ */
+
+CHIP Or {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Nor(a=a, b=b, out=nab);
+    //This gives us 1 if a and b = 0, 0 otherwise
+    Nor(a=nab, b=nab, out=out);
+    //If we nor this again, we should get 1 if a or b = 1, 0 otherwise
+}

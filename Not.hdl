@@ -1,0 +1,23 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Not.hdl
+// Author: Taylor Croix
+// Date: 09/06/2021
+// Section: 505 
+// E-mail: taylorcroix@tamu.edu 
+// Description:The content of this file implements the Not gate.
+/**
+ * Not gate:
+ * out = not in
+ */
+
+CHIP Not {
+    IN in;
+    OUT out;
+
+    PARTS:
+    //Since nor will output the opposite of a and b
+    //Then if we make both a and b our input, it will return the opposite of the input
+    Nor(a=in, b=in, out=out);
+}
